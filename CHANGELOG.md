@@ -1,6 +1,15 @@
 XDMoD Open OnDemand Module Change Log
 =====================
 
+## Unreleased
+
+- Bug Fixes
+    - Truncate request paths to 255 characters as the web server logs are read
+      so that over-long paths no longer overflow the `request_path` columns.
+    - Only extract numeric reverse proxy ports from the request path so that
+      non-numeric path segments no longer end up in the `reverse_proxy_port`
+      column.
+
 ## 2025-03-17 v11.0.1
 
 - Bug Fixes

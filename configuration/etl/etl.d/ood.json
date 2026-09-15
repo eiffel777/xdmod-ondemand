@@ -77,7 +77,17 @@
                         "type": "webserverlog",
                         "geoip_file": "${GEOIP_FILE_PATH}",
                         "record_separator": "\n",
-                        "log_format": "${APACHE_LOG_FORMAT}"
+                        "log_format": "${APACHE_LOG_FORMAT}",
+                        "filters": [{
+                            "#": "Truncate the request path to 255 characters so that it fits in the",
+                            "#": "request_path columns. The character class confines the match to the",
+                            "#": "quoted request field, which Apache guarantees contains no literal",
+                            "#": "double quote. Lines with a shorter path are passed through unchanged.",
+                            "type": "external",
+                            "name": "truncate-request-path",
+                            "path": "sed",
+                            "arguments": "-E 's|(\"[A-Z]+ )([^\"]{255})[^\"]*( HTTP/[0-9.]+\")|\\1\\2\\3|'"
+                        }]
                     }
                 }
             }
@@ -110,7 +120,7 @@
                     ";^/r?node/([^/]+)/.*;": "$1"
                 },
                 "reverse_proxy_port": {
-                    ";^/r?node/[^/]+/([^/]+)/.*;": "$1"
+                    ";^/r?node/[^/]+/([0-9]{1,5})(?![0-9])[^/]*/.*;": "$1"
                 }
             },
             "definition_file": "ood/normalized.json",

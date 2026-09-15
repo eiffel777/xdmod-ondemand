@@ -27,7 +27,7 @@
             },
             {
                 "name": "request_path",
-                "type": "varchar(511)",
+                "type": "varchar(255)",
                 "nullable": false
             },
             {

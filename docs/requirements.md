@@ -16,6 +16,14 @@ when log data are loaded into XDMoD.  If no database file is available, then
 the location information for all sessions will show as 'Unknown'. However
 all of the other data dimensions are unaffected.
 
+## Command line utilities
+
+The log ingestion process pipes the raw web server logs through `sed` in order
+to truncate over-long request paths before they are parsed. `sed` is part of
+the base operating system on all supported platforms, so no extra package needs
+to be installed, but it must be on the `PATH` of the account that runs the
+ingestion.
+
 ## Next Step
 
 Next [install](install.md) the package.
