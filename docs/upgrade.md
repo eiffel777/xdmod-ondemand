@@ -22,10 +22,4 @@ definitions are brought in line with the new configuration, so the columns are
 always altered while the tables are empty and no existing data can conflict
 with the new types. No action is required.
 
-If the ingestion pipeline has been customized so that these two tables are no
-longer truncated, empty them before running the ingestor for the first time
-after the upgrade. Otherwise the request paths longer than 255 characters and
-the non-numeric reverse proxy ports left behind by the previous version will
-cause the column changes to fail.
-
 [github-release]: https://github.com/ubccr/xdmod-ondemand/releases/tag/v{{ page.rpm_version }}
