@@ -38,7 +38,7 @@
             },
             {
                 "name": "reverse_proxy_port",
-                "type": "varchar(5)",
+                "type": "smallint(5) unsigned",
                 "nullable": false
             },
             {
